@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>READING INTO TWITTER</title> 
+    <link rel="shortcut icon" href="FinalLogo.ico" >
+    <!--encodes any text on the page (ensures that website will be searchable and able to be read by many people)-->
+      
+      <style type="text/css">
+
+        #title,
+        #shadow {
+          text-indent: 200px;
+        }
+
+      </style> <!--close of style tag-->
+
+
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+
+      html { height: 98% } /*shrinking the map height*/
+      body { height: 100%; margin-left: 200px; padding: 0px } /*adds space on the left for buttons*/
+      #map-canvas { height: 100% }
+
+    </style>
+
+    <!--!!!needs API key to work!!!-->
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDA1oCeVzm7Fehrcwl1ipOKl_Qla1V0K4w">
+    </script>
+
+    <script type="text/javascript">
+
+//----------------------------------------------------FUNCTION INITIALIZE---------------------------------------------------------//
+
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(38.8833, -97.0167), //centering the map
+          zoom: 3 //setting the zoom (smaller numbers are more zoomed out)
+        };
+      
+        //creating the map
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+
+//------------------------------------------------------CREATING LISTS------------------------------------------------------------//
+
+        //OUTLANDER = Outlander
+        //LIES = Big Little Lies
+        //GONE = Gone Girls
+        //TAKING = Taking It All
+        //SKYE = Dark Skye
+        //UNBROKEN = Unbroken
+        //BOYS = The Boys in the Boat
+        //AMERICA = America
+        //HEAVEN = Heaven is For Real
+        //FAMILY = The First Family Detail
+
+
+        var positionsListOutlander = [[19,45],[40,-80]]; //list of data for OUTLANDER
+        var positionsListLies = [[30,-100],[64,-20]]; //list of data for LIES
+        var positionsListGone = [[50,-60],[50,30]]; //list of data for GONE     
+        var positionsListTaking = [[30,40],[60,20],[-10,25]]; //list of data for TAKING
+        var positionsListSkye = [[45,19],[32,65]]; //list of data for SKYE       
+        var positionsListUnbroken = [[30,40],[60,20]]; //list of data for UNBROKEN
+        var positionsListBoys = [[-20,-55],[-70,-60]]; //list of data for BOYS      
+        var positionsListAmerica = [[40,10],[-60,-20]]; //list of data for AMERICA
+        var positionsListHeaven = [[-15,-60],[-70,-60]]; //list of data for HEAVEN     
+        var positionsListFamily = [[-70,-30],[-40,-60],[10,30]]; //list of data for FAMILY
+
+
+        var latListOutlander = []; //creates list for OUTLANDER latitudes
+        var longListOutlander = []; //creates list for OUTLANDER longitudes
+
+        var latListLies = []; //creates list for LIES latitudes
+        var longListLies = []; //creates list for LIES longitudes
+
+        var latListGone = []; //creates list for GONE latitudes
+        var longListGone = []; //creates list for GONE longitudes
+
+        var latListTaking = []; //creates list for TAKING latitudes
+        var longListTaking = []; //creates list for TAKING longitudes
+
+        var latListSkye = []; //creates list for SKYE latitudes
+        var longListSkye = []; //creates list for SKYE longitudes
+
+        var latListUnbroken = []; //creates list for UNBROKEN latitudes
+        var longListUnbroken = []; //creates list for UNBROKEN longitudes
+
+        var latListBoys = []; //creates list for BOYS latitudes
+        var longListBoys = []; //creates list for BOYS longitudes
+
+        var latListAmerica = []; //creates list for AMERICA latitudes
+        var longListAmerica = []; //creates list for AMERICA longitudes
+
+        var latListHeaven = []; //creates list for HEAVEN latitudes
+        var longListHeaven = []; //creates list for HEAVEN longitudes
+
+        var latListFamily = []; //creates list for FAMILY latitudes
+        var longListFamily = []; //creates list for FAMILY longitudes
+
+
+//-------------------------------------------------------OUTLANDER FOR LOOP------------------------------------------------------------//
+
+        for(var i = 0; i <= positionsListOutlander.length - 1; i++){
+          for(var j = 0; j <= positionsListOutlander.length - 1; j++){    
+
+            if(j === 0){ //if latitude, then put in OUTLANDER's latList
+              var latO = positionsListOutlander[i][j]; 
+              latListOutlander.push(latO);
+            } //closes if statement
+
+            else if(j === 1){ //if latitude, then put in OUTLANDER's latList
+              var lonO = positionsListOutlander[i][j]; 
+              longListOutlander.push(lonO);
+            } //closes else statement
+
+          }; //closes j for loop   
+
+          var myLatlngO = new google.maps.LatLng(latListOutlander[i], longListOutlander[i]); //creating variable for OUTLANDER's location
+          
+          var image = 'outlander.png';
+
+          //creates a marker for OUTLANDER on the map
+          var markerO = new google.maps.Marker({ 
+              position: myLatlngO, //sets position of marker
+              map: map, //specifies map on which to put the marker
+              title: ("OUTLANDER " + myLatlngO), //titles the marker with location
+              icon: image
+          });//closes markerO 
+
+        }; //closes OUTLANDER for loop      
+
+//-----------------------------------------------------LIES FOR LOOP------------------------------------------------------------//
+
+        for(var i = 0; i <= positionsListLies.length - 1; i++){ 
+          for(var j = 0; j <= positionsListLies.length - 1; j++){
+
+            if(j == 0){ //if latitude, then put in LIES's latList
+              var latL = positionsListLies[i][j]; 
+              latListLies.push(latL);
+            } //closes if statement
+
+            else if(j == 1){ //if longitude, then put in LIES's longList
+              var lonL = positionsListLies[i][j]; 
+              longListLies.push(lonL);
+            } //closes else statement
+             
+          } //closes j for loop        
+
+          var myLatlngL = new google.maps.LatLng(latListLies[i], longListLies[i]); //creating variable for LIES's location
+          
+          var image = 'lies.png';
+
+          //creates a marker for LIES on the map
+          var markerL = new google.maps.Marker({ 
+              position: myLatlngL, //sets position of marker
+              map: map, //specifies map on which to put the marker
+              title: ("LIES " + myLatlngL), //titles the marker with location
+              icon: image
+          });//closes markerL
+
+        }; //closes LIES for loop
+
+//------------------------------------------------------GONE FOR LOOP------------------------------------------------------------//
+              
+        for(var i = 0; i <= positionsListGone.length - 1; i++){ 
+          for(var j = 0; j <= positionsListGone.length - 1; j++){
+
+            if(j == 0){ //if latitude, then put in GONE's latList
+
+              var latG = positionsListGone[i][j]; 
+              latListGone.push(latG);
+            } //closes if statement
+
+            else if(j == 1){ //if longitude, then put in GONE's longList
+              var lonG = positionsListGone[i][j]; 
+              longListGone.push(lonG);
+            }; //closes else statement
+             
+          }; //closes j for loop   
+
+          var myLatlngG = new google.maps.LatLng(latListGone[i], longListGone[i]); //creating variable for GONE's location
+
+          var image = 'gone.png';
+
+          //creates a marker for GONE on the map
+          var markerG = new google.maps.Marker({ 
+              position: myLatlngG, //sets position of marker
+              map: map, //specifies map on which to put the marker
+              title: ("GONE " + myLatlngG), //titles the marker with location
+              icon: image
+          });//closes markerG
+
+        }; //closes GONE for loop
+
+///-------------------------------------------------------TAKING FOR LOOP------------------------------------------------------------//
+
+        for(var i = 0; i <= positionsListTaking.length - 1; i++){
+          for(var j = 0; j <= positionsListTaking.length - 1; j++){    
+
+            if(j === 0){ //if latitude, then put in TAKING's latList
+              var latT = positionsListTaking[i][j]; 
+              latListTaking.push(latT);
+            } //closes if statement
+
+            else if(j === 1){ //if latitude, then put in TAKING's latList
+              var lonT = positionsListTaking[i][j]; 
+              longListTaking.push(lonT);
+            } //closes else statement
+
+          }; //closes j for loop   
+
+          var myLatlngT = new google.maps.LatLng(latListTaking[i], longListTaking[i]); //creating variable for TAKING's location
+          
+          var image = 'taking.png';
+
+          //creates a marker for WILD on the map
+          var markerT = new google.maps.Marker({ 
+              position: myLatlngT, //sets position of marker
+              map: map, //specifies map on which to put the marker
+              title: ("TAKING " + myLatlngT), //titles the marker with location
+              icon: image
+          });//closes markerT 
+
+        }; //closes TAKING for loop      
+
+///-------------------------------------------------------SKYE FOR LOOP------------------------------------------------------------//
+
+        for(var i = 0; i <= positionsListSkye.length - 1; i++){
+          for(var j = 0; j <= positionsListSkye.length - 1; j++){    
+
+            if(j === 0){ //if latitude, then put in SKYE's latList
+              var latS = positionsListSkye[i][j]; 
+              latListSkye.push(latS);
+            } //closes if statement
+
+            else if(j === 1){ //if latitude, then put in SKYE's latList
+              var lonS = positionsListSkye[i][j]; 
+              longListSkye.push(lonS);
+            } //closes else statement
+
+          }; //closes j for loop   
+
+          var myLatlngS = new google.maps.LatLng(latListSkye[i], longListSkye[i]); //creating variable for SKYE's location
+          
+          var image = 'skye.png';
+
+          //creates a marker for WILD on the map
+          var markerS = new google.maps.Marker({ 
+              position: myLatlngS, //sets position of marker
+              map: map, //specifies map on which to put the marker
+              title: ("SKYE " + myLatlngS), //titles the marker with location
+              icon: image
+          });//closes markerS
+
+        }; //closes SKYE for loop      
+
+///-------------------------------------------------------UNBROKEN FOR LOOP------------------------------------------------------------//
+
+        for(var i = 0; i <= positionsListUnbroken.length - 1; i++){
+          for(var j = 0; j <= positionsListUnbroken.length - 1; j++){    
+
+            if(j === 0){ //if latitude, then put in UNBROKEN's latList
+              var latU = positionsListUnbroken[i][j]; 
+              latListUnbroken.push(latU);
+            } //closes if statement
+
+            else if(j === 1){ //if latitude, then put in UNBROKEN's latList
+              var lonU = positionsListUnbroken[i][j]; 
+              longListUnbroken.push(lonU);
+            } //closes else statement
+
+          }; //closes j for loop   
+
+          var myLatlngU = new google.maps.LatLng(latListUnbroken[i], longListUnbroken[i]); //creating variable for UNBROKEN's location
+          
+          var image = 'unbroken.png';
+
+          //creates a marker for UNBROKEN on the map
+          var markerU = new google.maps.Marker({ 
+              position: myLatlngU, //sets position of marker
+              map: map, //specifies map on which to put the marker
+              title: ("UNBROKEN " + myLatlngU), //titles the marker with location
+              icon: image
+          });//closes markerU
+
+        }; //closes UNBROKEN for loop      
+
+///-------------------------------------------------------BOYS FOR LOOP------------------------------------------------------------//
+
+        for(var i = 0; i <= positionsListBoys.length - 1; i++){
+          for(var j = 0; j <= positionsListBoys.length - 1; j++){    
+
+            if(j === 0){ //if latitude, then put in BOYS's latList
+              var latB = positionsListBoys[i][j]; 
+              latListBoys.push(latB);
+            } //closes if statement
+
+            else if(j === 1){ //if latitude, then put in BOYS's latList
+              var lonB = positionsListBoys[i][j]; 
+              longListBoys.push(lonB);
+            } //closes else statement
+
+          }; //closes j for loop   
+
+          var myLatlngB = new google.maps.LatLng(latListBoys[i], longListBoys[i]); //creating variable for BOYS's location
+          
+          var image = 'boys.png';
+
+          //creates a marker for WILD on the map
+          var markerB = new google.maps.Marker({ 
+              position: myLatlngB, //sets position of marker
+              map: map, //specifies map on which to put the marker
+              title: ("BOYS " + myLatlngB), //titles the marker with location
+              icon: image
+          });//closes markerB
+
+        }; //closes BOYS for loop      
+
+///-------------------------------------------------------AMERICA FOR LOOP------------------------------------------------------------//
+
+        for(var i = 0; i <= positionsListAmerica.length - 1; i++){
+          for(var j = 0; j <= positionsListAmerica.length - 1; j++){    
+
+            if(j === 0){ //if latitude, then put in AMERICA's latList
+              var latA = positionsListAmerica[i][j]; 
+              latListAmerica.push(latA);
+            } //closes if statement
+
+            else if(j === 1){ //if latitude, then put in OUTLANDER's latList
+              var lonA = positionsListAmerica[i][j]; 
+              longListAmerica.push(lonA);
+            } //closes else statement
+
+          }; //closes j for loop   
+
+          var myLatlngA = new google.maps.LatLng(latListAmerica[i], longListAmerica[i]); //creating variable for AMERICA's location
+          
+          var image = 'america.png';
+
+          //creates a marker for AMERICA on the map
+          var markerA = new google.maps.Marker({ 
+              position: myLatlngA, //sets position of marker
+              map: map, //specifies map on which to put the marker
+              title: ("AMERICA " + myLatlngA), //titles the marker with location
+              icon: image
+          });//closes markerA
+
+        }; //closes AMERICA for loop      
+
+///-------------------------------------------------------HEAVEN FOR LOOP------------------------------------------------------------//
+
+        for(var i = 0; i <= positionsListHeaven.length - 1; i++){
+          for(var j = 0; j <= positionsListHeaven.length - 1; j++){    
+
+            if(j === 0){ //if latitude, then put in HEAVEN's latList
+              var latH = positionsListHeaven[i][j]; 
+              latListHeaven.push(latH);
+            } //closes if statement
+
+            else if(j === 1){ //if latitude, then put in HEAVEN's latList
+              var lonH = positionsListHeaven[i][j]; 
+              longListHeaven.push(lonH);
+            } //closes else statement
+
+          }; //closes j for loop   
+
+          var myLatlngH = new google.maps.LatLng(latListHeaven[i], longListHeaven[i]); //creating variable for HEAVEN's location
+          
+          var image = 'heaven.png';
+
+          //creates a marker for HEAVEN on the map
+          var markerH = new google.maps.Marker({ 
+              position: myLatlngH, //sets position of marker
+              map: map, //specifies map on which to put the marker
+              title: ("HEAVEN " + myLatlngH), //titles the marker with location
+              icon: image
+          });//closes markerH
+
+        }; //closes HEAVEN for loop      
+
+///-------------------------------------------------------FAMILY FOR LOOP------------------------------------------------------------//
+
+        for(var i = 0; i <= positionsListFamily.length - 1; i++){
+          for(var j = 0; j <= positionsListFamily.length - 1; j++){    
+
+            if(j === 0){ //if latitude, then put in FAMILY's latList
+              var latF = positionsListFamily[i][j]; 
+              latListFamily.push(latF);
+            } //closes if statement
+
+            else if(j === 1){ //if latitude, then put in FAMILY's latList
+              var lonF = positionsListFamily[i][j]; 
+              longListFamily.push(lonF);
+            } //closes else statement
+
+          }; //closes j for loop   
+
+          var myLatlngF = new google.maps.LatLng(latListFamily[i], longListFamily[i]); //creating variable for FAMILY's location
+          
+          var image = 'family.png';
+
+          //creates a marker for FAMILY on the map
+          var markerF = new google.maps.Marker({ 
+              position: myLatlngF, //sets position of marker
+              map: map, //specifies map on which to put the marker
+              title: ("FAMILY " + myLatlngF), //titles the marker with location
+              icon: image
+          });//closes markerO 
+
+        }; //closes FAMILY for loop      
+
+//------------------------------------------------END INITIALIZE; RUNNING CODE----------------------------------------------------//
+      }
+      
+      google.maps.event.addDomListener(window, 'load', initialize); //runs the code
+ 
+    </script>
+  </head>
+  <body>
+    <img src="FinalLogo.gif" width = "7%" height = "12%" alt="READING INTO TWITTER" id="logo"></img> <!--logo-->
+
+    <center>
+      <div data-role="header" id="header" style="width:1600px;height:55px; background-color: #77d42a">
+        <h1><font face="verdana" id="title">READING INTO TWITTER</font></h1>
+        <h1><font face="verdana" id="shadow">READING INTO TWITTER</font></h1>
+      </div><!--closes the header-->
+    </center>
+
+    <div id="caption">
+      <p id="descript">This map shows the location of live tweets mentioning the top ten New York Times Best Seller books. </p>
+    </div>
+
+    <style type="text/css">
+
+      #header {
+        position: fixed;
+        z-index: 3;
+        top: 0px;
+        left: -30px;
+        box-shadow: 0px 3px 3px 0px #caefab;
+        background: linear-gradient(#77d42a, #5cb811);
+        border: transparent;
+      }
+
+      #title {
+        position: fixed;
+        z-index: 2;
+        top: 5px;
+        left: 240px;
+        text-shadow: 2px 2px .5px #306108;
+        color: transparent;
+      }
+
+      #shadow {
+        position: fixed;
+        z-index: 1;
+        top: 6px;
+        left: 241px;
+        text-shadow: 3px 3px 2px #aade7c;
+        color: transparent;
+      }
+
+      table {
+        position: fixed;
+        top: 125px;
+        left: 35px;
+      }
+
+      #logo {
+        position: fixed;
+        top: 50px;
+        left: 55px;
+      }
+
+      #caption {
+        position: fixed;
+        top: 440px;
+        left: 25px;
+        border-color: transparent;
+        height: 200px;
+        width: 155px;
+        z-index: 4;
+      }
+
+      #descript{
+        font-family: Arial, Helvetica, sans-serif;
+        color: gray;
+        font-style: italic;
+      }
+
+    </style>
+
+    <table border = "0">
+      <tr>
+        <td>
+          <a href="FINAL.html" class="home">HOME</a>
+
+          <style type="text/css">
+            .home {
+              -moz-box-shadow:inset 0px 2px 2px 0px #97c4fe;
+              -webkit-box-shadow:inset 0px 2px 2px 0px #97c4fe;
+              box-shadow:inset 0px 2px 2px 0px #97c4fe;
+              background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #3d94f6), color-stop(1, #1e62d0) );
+              background:-moz-linear-gradient( center top, #3d94f6 5%, #1e62d0 100% );
+              filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d94f6', endColorstr='#1e62d0');
+              background-color:#3d94f6;
+              -webkit-border-top-left-radius:30px;
+              -moz-border-radius-topleft:30px;
+              border-top-left-radius:30px;
+              -webkit-border-top-right-radius:0px;
+              -moz-border-radius-topright:0px;
+              border-top-right-radius:0px;
+              -webkit-border-bottom-right-radius:30px;
+              -moz-border-radius-bottomright:30px;
+              border-bottom-right-radius:30px;
+              -webkit-border-bottom-left-radius:0px;
+              -moz-border-radius-bottomleft:0px;
+              border-bottom-left-radius:0px;
+              text-indent:-0.86px;
+              border:1px solid #337fed;
+              display:inline-block;
+              color:#ffffff;
+              font-family:Verdana;
+              font-size:18px;
+              font-weight:normal;
+              font-style:normal;
+              height:40px;
+              line-height:40px;
+              width:120px;
+              text-decoration:none;
+              text-align:center;
+              text-shadow:2px 2px 3px #1570cd;
+            }
+            .home:hover {
+              background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #1e62d0), color-stop(1, #3d94f6) );
+              background:-moz-linear-gradient( center top, #1e62d0 5%, #3d94f6 100% );
+              filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e62d0', endColorstr='#3d94f6');
+              background-color:#1e62d0;
+            }.home:active {
+              position:relative;
+              top:1px;
+            }
+          </style>
+
+        </td>
+      </tr> 
+      
+      <tr>
+        <td>
+          <a href ="Radar.html" class="radar">RADAR</a>
+
+          <style type="text/css">
+            .radar {
+              -moz-box-shadow:inset 0px 2px 2px 0px #d197fe;
+              -webkit-box-shadow:inset 0px 2px 2px 0px #d197fe;
+              box-shadow:inset 0px 2px 2px 0px #d197fe;
+              background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #a53df6), color-stop(1, #7c16cb) );
+              background:-moz-linear-gradient( center top, #a53df6 5%, #7c16cb 100% );
+              filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a53df6', endColorstr='#7c16cb');
+              background-color:#a53df6;
+              -webkit-border-top-left-radius:0px;
+              -moz-border-radius-topleft:0px;
+              border-top-left-radius:0px;
+              -webkit-border-top-right-radius:30px;
+              -moz-border-radius-topright:30px;
+              border-top-right-radius:30px;
+              -webkit-border-bottom-right-radius:0px;
+              -moz-border-radius-bottomright:0px;
+              border-bottom-right-radius:0px;
+              -webkit-border-bottom-left-radius:30px;
+              -moz-border-radius-bottomleft:30px;
+              border-bottom-left-radius:30px;
+              text-indent:0;
+              border:1px solid #9c33ed;
+              display:inline-block;
+              color:#ffffff;
+              font-family:Verdana;
+              font-size:18px;
+              font-weight:normal;
+              font-style:normal;
+              height:40px;
+              line-height:40px;
+              width:120px;
+              text-decoration:none;
+              text-align:center;
+              text-shadow:2px 2px 3px #7d15cd;
+            }
+            .radar:hover {
+              background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #7c16cb), color-stop(1, #a53df6) );
+              background:-moz-linear-gradient( center top, #7c16cb 5%, #a53df6 100% );
+              filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7c16cb', endColorstr='#a53df6');
+              background-color:#7c16cb;
+            }.radar:active {
+              position:relative;
+              top:1px;
+            }
+          </style>
+
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <a href ="Pie.html" class="pie">PIE</a>
+
+          <style type="text/css">
+            .pie {
+              -moz-box-shadow:inset 0px 2px 2px 0px #f29c93;
+              -webkit-box-shadow:inset 0px 2px 2px 0px #f29c93;
+              box-shadow:inset 0px 2px 2px 0px #f29c93;
+              background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fe1a00), color-stop(1, #ce0100) );
+              background:-moz-linear-gradient( center top, #fe1a00 5%, #ce0100 100% );
+              filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fe1a00', endColorstr='#ce0100');
+              background-color:#fe1a00;
+              -webkit-border-top-left-radius:30px;
+              -moz-border-radius-topleft:30px;
+              border-top-left-radius:30px;
+              -webkit-border-top-right-radius:0px;
+              -moz-border-radius-topright:0px;
+              border-top-right-radius:0px;
+              -webkit-border-bottom-right-radius:30px;
+              -moz-border-radius-bottomright:30px;
+              border-bottom-right-radius:30px;
+              -webkit-border-bottom-left-radius:0px;
+              -moz-border-radius-bottomleft:0px;
+              border-bottom-left-radius:0px;
+              text-indent:-0.86px;
+              border:1px solid #d83526;
+              display:inline-block;
+              color:#ffffff;
+              font-family:Verdana;
+              font-size:18px;
+              font-weight:normal;
+              font-style:normal;
+              height:40px;
+              line-height:40px;
+              width:120px;
+              text-decoration:none;
+              text-align:center;
+              text-shadow:2px 2px 3px #b23e35;
+            }
+            .pie:hover {
+              background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ce0100), color-stop(1, #fe1a00) );
+              background:-moz-linear-gradient( center top, #ce0100 5%, #fe1a00 100% );
+              filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ce0100', endColorstr='#fe1a00');
+              background-color:#ce0100;
+            }.pie:active {
+              position:relative;
+              top:1px;
+            }
+
+          </style>
+
+        </td>
+      </tr> 
+
+      <tr>
+        <td>
+          <a href ="Line.html" class="line">LINE</a> 
+
+          <style type="text/css">
+            .line {
+              -moz-box-shadow:inset 0px 2px 2px 0px #fed897;
+              -webkit-box-shadow:inset 0px 2px 2px 0px #fed897;
+              box-shadow:inset 0px 2px 2px 0px #fed897;
+              background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f6b33d), color-stop(1, #d29105) );
+              background:-moz-linear-gradient( center top, #f6b33d 5%, #d29105 100% );
+              filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6b33d', endColorstr='#d29105');
+              background-color:#f6b33d;
+              -webkit-border-top-left-radius:0px;
+              -moz-border-radius-topleft:0px;
+              border-top-left-radius:0px;
+              -webkit-border-top-right-radius:30px;
+              -moz-border-radius-topright:30px;
+              border-top-right-radius:30px;
+              -webkit-border-bottom-right-radius:0px;
+              -moz-border-radius-bottomright:0px;
+              border-bottom-right-radius:0px;
+              -webkit-border-bottom-left-radius:30px;
+              -moz-border-radius-bottomleft:30px;
+              border-bottom-left-radius:30px;
+              text-indent:-0.86px;
+              border:1px solid #eda933;
+              display:inline-block;
+              color:#ffffff;
+              font-family:Verdana;
+              font-size:18px;
+              font-weight:normal;
+              font-style:normal;
+              height:40px;
+              line-height:40px;
+              width:120px;
+              text-decoration:none;
+              text-align:center;
+              text-shadow:2px 2px 3px #cd8a15;
+            }
+            .line:hover {
+              background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #d29105), color-stop(1, #f6b33d) );
+              background:-moz-linear-gradient( center top, #d29105 5%, #f6b33d 100% );
+              filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d29105', endColorstr='#f6b33d');
+              background-color:#d29105;
+            }.line:active {
+              position:relative;
+              top:1px;
+            }
+
+          </style>
+
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <a href ="NYTmaptestCOMPLETE.html" class="map">MAP</a>       
+
+          <style type="text/css">
+
+            .map {
+              -moz-box-shadow:inset 0px 2px 2px 0px #caefab;
+              -webkit-box-shadow:inset 0px 2px 2px 0px #caefab;
+              box-shadow:inset 0px 2px 2px 0px #caefab;
+              background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #77d42a), color-stop(1, #5cb811) );
+              background:-moz-linear-gradient( center top, #77d42a 5%, #5cb811 100% );
+              filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77d42a', endColorstr='#5cb811');
+              background-color:#77d42a;
+              -webkit-border-top-left-radius:30px;
+              -moz-border-radius-topleft:30px;
+              border-top-left-radius:30px;
+              -webkit-border-top-right-radius:0px;
+              -moz-border-radius-topright:0px;
+              border-top-right-radius:0px;
+              -webkit-border-bottom-right-radius:30px;
+              -moz-border-radius-bottomright:30px;
+              border-bottom-right-radius:30px;
+              -webkit-border-bottom-left-radius:0px;
+              -moz-border-radius-bottomleft:0px;
+              border-bottom-left-radius:0px;
+              text-indent:0px;
+              border:1px solid #268a16;
+              display:inline-block;
+              color:#306108;
+              font-family:Verdana;
+              font-size:18px;
+              font-weight:normal;
+              font-style:normal;
+              height:40px;
+              line-height:40px;
+              width:120px;
+              text-decoration:none;
+              text-align:center;
+              text-shadow:2px 2px 3px #aade7c;
+            }
+            .map:hover {
+              background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5cb811), color-stop(1, #77d42a) );
+              background:-moz-linear-gradient( center top, #5cb811 5%, #77d42a 100% );
+              filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5cb811', endColorstr='#77d42a');
+              background-color:#5cb811;
+            }.map:active {
+              position:relative;
+              top:1px;
+            }
+          </style>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <a href="http://0.0.0.0:8000/network.html" class="network">NETWORK</a>
+
+          <style type="text/css">
+            .network {
+              -moz-box-shadow:inset 0px 2px 2px 0px #97c4fe;
+              -webkit-box-shadow:inset 0px 2px 2px 0px #97c4fe;
+              box-shadow:inset 0px 2px 2px 0px #97c4fe;
+              background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #00CCFF), color-stop(1, #3399FF) );
+              background:-moz-linear-gradient( center top, #00CCFF 5%, #3399FF 100% );
+              filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#00CCFF', endColorstr='#3399FF');
+              background-color:#00CCFF;
+              -webkit-border-top-left-radius:0px;
+              -moz-border-radius-topleft:0px;
+              border-top-left-radius:0px;
+              -webkit-border-top-right-radius:30px;
+              -moz-border-radius-topright:30px;
+              border-top-right-radius:30px;
+              -webkit-border-bottom-right-radius:0px;
+              -moz-border-radius-bottomright:0px;
+              border-bottom-right-radius:0px;
+              -webkit-border-bottom-left-radius:30px;
+              -moz-border-radius-bottomleft:30px;
+              border-bottom-left-radius:30px;
+              text-indent:-0.86px;
+              border:1px solid #337fed;
+              display:inline-block;
+              color:#ffffff;
+              font-family:Verdana;
+              font-size:18px;
+              font-weight:normal;
+              font-style:normal;
+              height:40px;
+              line-height:40px;
+              width:120px;
+              text-decoration:none;
+              text-align:center;
+              text-shadow:2px 2px 3px #1570cd;
+            }
+            .home:hover {
+              background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #3399FF), color-stop(1, #3d94f6) );
+              background:-moz-linear-gradient( center top, #3399FF 5%, #3d94f6 100% );
+              filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3399FF', endColorstr='#3d94f6');
+              background-color:#3399FF;
+            }.home:active {
+              position:relative;
+              top:1px;
+            }
+
+          </style>
+
+        </td>
+      </tr>
+    </table>
+
+    <div id="map-canvas"/></div>
+
+    <style type="text/css">
+
+      map,
+      #map-canvas {
+        position: relative;
+        top: 50px;
+        left: 10px;
+      }
+
+    </style>
+
+  </body>
+</html>
